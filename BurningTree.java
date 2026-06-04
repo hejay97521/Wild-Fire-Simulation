@@ -21,6 +21,5 @@ public class BurningTree extends Plant {
        //NOT DONE
        // stepsburning+1
        //if its burning over or equal 3, set forest ash to row, col
- 
    }
 }

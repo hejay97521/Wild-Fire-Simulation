@@ -30,7 +30,34 @@ public class FireSimulatorGUI {
    private void step() {
       forest.update();
       draw(panel.getGraphics());
+      panel.sleep(0);
    }
    
-//working on
+   private void draw(Graphics g) {
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLS; c++) {
+                String status = forest.getCell(r, c).getStatus();
+                if (status.equals("tree"))         g.setColor(new Color(34, 139, 34));
+                else if (status.equals("burning")) g.setColor(Color.ORANGE);
+                else if (status.equals("ash"))     g.setColor(Color.GRAY);
+                else                               g.setColor(new Color(210, 180, 140));
+                g.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            }
+        }
+    }
+   
+    public void reset() {
+        forest = new Forest(ROWS, COLS, DENSITY);
+        forest.setOnFire(ROWS / 2, COLS / 2);
+        draw(panel.getGraphics());
+    }
+   
+    public void startUp() {
+        Timer timer = new Timer(DELAY, e -> step());
+        timer.start();
+    }
+   
+    public static void main(String[] args) {
+        new FireSimulatorGUI();
+    }
 }

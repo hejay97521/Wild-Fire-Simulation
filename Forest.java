@@ -1,6 +1,6 @@
 //  grid of Cell objects and manages simulation state.
 // updates all cells each step and handles fire/ash transitions.
-//STILL WORKING ON DO NOT MODIFY
+//STILL WORKING
 public class Forest {
 
     private Cell[][] grid;

@@ -14,7 +14,7 @@ public class BurningTree extends Plant {
    public void update(Forest forest, int row, int col) {
         stepsBurning++;
         if (stepsBurning >= 3) {
-            forest.setOnFire(row, col);
+            forest.setToAsh(row, col);
         }
 
    }

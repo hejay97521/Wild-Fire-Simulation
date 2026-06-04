@@ -1,6 +1,6 @@
 
 //This file shows what happens after tree burns out
- public class Ash extends Cell {
+ public class Ash extends Plant {
     public Ash() {
         super("ash");
     }

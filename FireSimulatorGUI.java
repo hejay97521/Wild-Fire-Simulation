@@ -1,8 +1,4 @@
-// Jayden He, Tuguldur Oyunjargal
-// CS 142, Spring 2026
-// Final Project: Wildfire Simulation
-// FireSimulatorGUI.java - draws the forest grid and animates it using a timer
-
+//NOT DONE
 import java.awt.*;
 import javax.swing.*;
 

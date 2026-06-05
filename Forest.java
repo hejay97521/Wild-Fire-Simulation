@@ -44,46 +44,37 @@ public class Forest {
     }
 
     public void update() {
-          boolean[][] catchFire = new boolean[rows][cols];
-      
-      for (int r = 0; r < rows; r++) {
-         for (int c = 0; c < cols; c++) {
-            if (grid[r][c].getStatus().equals("burning")) {
-               grid[r][c].update(this, r, c);
-            } else if (grid[r][c].getStatus().equals("tree")) {
-               if (r - 1 >= 0 && grid[r-1][c].isBurning()) {
-                  if (Math.random() < 0.4) {
-                     catchFire[r][c] = true;
-                  }
-               }
-               if (r + 1 < rows && grid[r+1][c].isBurning()) {
-                  if (Math.random() < 0.4) {
-                     catchFire[r][c] = true;
-                  }
-               }
-               if (c - 1 >= 0 && grid[r][c-1].isBurning()) {
-                  if (Math.random() < 0.4) {
-                     catchFire[r][c] = true;
-                  }
-               }
-               if (c + 1 < cols && grid[r][c+1].isBurning()) {
-                  if (Math.random() < 0.4) {
-                     catchFire[r][c] = true;
-                  }
-               }
-            }
-         }
+        boolean[][] catchFire = new boolean[rows][cols];
+
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (catchFire[r][c]== true) {
+                if (grid[r][c].getStatus().equals("burning")) {
+                    grid[r][c].update(this, r, c);
+                } else if (grid[r][c].getStatus().equals("tree")) {
+                    if (r - 1 >= 0 && grid[r-1][c].isBurning()) {
+                        if (Math.random() < 0.4) catchFire[r][c] = true;
+                    }
+                    if (r + 1 < rows && grid[r+1][c].isBurning()) {
+                        if (Math.random() < 0.4) catchFire[r][c] = true;
+                    }
+                    if (c - 1 >= 0 && grid[r][c-1].isBurning()) {
+                        if (Math.random() < 0.4) catchFire[r][c] = true;
+                    }
+                    if (c + 1 < cols && grid[r][c+1].isBurning()) {
+                        if (Math.random() < 0.4) catchFire[r][c] = true;
+                    }
+                }
+            }
+        }
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (catchFire[r][c]) {
                     grid[r][c] = new BurningTree();
+                }
+            }
         }
     }
-}     
-
-
-          
-      }
     
     public String toString() {
         String result = "";

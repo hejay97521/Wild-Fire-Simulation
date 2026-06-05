@@ -38,7 +38,7 @@ public class FireSimulatorGUI {
             for (int c = 0; c < COLS; c++) {
                 String status = forest.getCell(r, c).getStatus();
                 if (status.equals("tree"))         g.setColor(new Color(34, 139, 34));
-                else if (status.equals("burning")) g.setColor(Color.ORANGE);
+                else if (status.equals("burning")) g.setColor(Color.RED);
                 else if (status.equals("ash"))     g.setColor(Color.GRAY);
                 else                               g.setColor(new Color(210, 180, 140));
                 g.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);

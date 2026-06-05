@@ -24,13 +24,13 @@ public class Forest {
         }
     }
     public void setOnFire(int row, int col) {
-        if (grid[row][col].getStatus().equals("tree")) {
+   
             grid[row][col] = new BurningTree();
-        } else if (grid[row][col].getStatus().equals("burning")) {
-            grid[row][col] = new Ash();
-        }
+      
     }
-
+    public void setToAsh(int row, int col){
+        grid[row][col] = new Ash();
+    }
     public Cell getCell(int row, int col) {
         return grid[row][col];
     }
@@ -44,19 +44,46 @@ public class Forest {
     }
 
     public void update() {
-        Cell[][] next = new Cell[rows][cols];
+          boolean[][] catchFire = new boolean[rows][cols];
+      
+      for (int r = 0; r < rows; r++) {
+         for (int c = 0; c < cols; c++) {
+            if (grid[r][c].getStatus().equals("burning")) {
+               grid[r][c].update(this, r, c);
+            } else if (grid[r][c].getStatus().equals("tree")) {
+               if (r - 1 >= 0 && grid[r-1][c].isBurning()) {
+                  if (Math.random() < 0.4) {
+                     catchFire[r][c] = true;
+                  }
+               }
+               if (r + 1 < rows && grid[r+1][c].isBurning()) {
+                  if (Math.random() < 0.4) {
+                     catchFire[r][c] = true;
+                  }
+               }
+               if (c - 1 >= 0 && grid[r][c-1].isBurning()) {
+                  if (Math.random() < 0.4) {
+                     catchFire[r][c] = true;
+                  }
+               }
+               if (c + 1 < cols && grid[r][c+1].isBurning()) {
+                  if (Math.random() < 0.4) {
+                     catchFire[r][c] = true;
+                  }
+               }
+            }
+         }
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                next[r][c] = grid[r][c];
-            }
+                if (catchFire[r][c]== true) {
+                    grid[r][c] = new BurningTree();
         }
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                grid[r][c].update(this, r, c);
-            }
-        }
-        grid = next;
     }
+}     
+
+
+          
+      }
     
     public String toString() {
         String result = "";

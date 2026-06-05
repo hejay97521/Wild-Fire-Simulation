@@ -1,4 +1,4 @@
-// represents empty ground, cannot catch fire
+// represents empty ground, no actions
  
 public class Empty extends Cell {
    

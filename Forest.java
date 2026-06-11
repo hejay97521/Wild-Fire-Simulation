@@ -7,6 +7,8 @@ public class Forest {
     private int rows;
     private int cols;
 
+
+    // random places trees
     public Forest(int rows, int cols, double density) {
         this.rows = rows;
         this.cols = cols;
@@ -43,6 +45,8 @@ public class Forest {
         return cols;
     }
 
+
+    // advances simulation by each time
     public void update() {
         boolean[][] catchFire = new boolean[rows][cols];
 
